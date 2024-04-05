@@ -172,6 +172,24 @@
 </section>
 
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In the realm of robotic grasping, achieving accurate and reliable interactions with the environment is a pivotal challenge. Traditional methods of grasp planning methods utilizing partial point clouds derived from depth image often suffer from reduced scene understanding due to occlusion, ultimately impeding their grasping accuracy. Furthermore, scene reconstruction methods have primarily relied upon static techniques, which are susceptible to environment change during manipulation process limits their efficacy in real-time grasping tasks. To address these limitations, this paper introduces a novel two-stage pipeline for dynamic scene reconstruction. In the first stage, our approach takes scene scanning as input to register each target object with mesh reconstruction and novel object pose tracking. In the second stage, pose tracking is still performed to provide object poses in real-time, enabling our approach to transform the reconstructed object point clouds back into the scene.
+Unlike conventional methodologies, which rely on static scene snapshots, our method continuously captures the evolving scene geometry, resulting in a comprehensive and up-to-date point cloud representation. By circumventing the constraints posed by occlusion, our method enhances the overall grasp planning process and empowers state-of-the-art 6-DoF robotic grasping algorithms to exhibit markedly improved accuracy. 
+          </p>
+        
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
 
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
@@ -194,9 +212,8 @@
       <img src="./static/images/pipline_icra_2024_final.png"  width=100%>
       <!-- </img> -->
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">YOSO</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        Overview of the proposed pipeline. <b>Stage I</b>:
+ Given a monocular RGB-D video, object masks are segmented using a <i>Video-segmentation Module</i>. Subsequently, feature matching is performed in the <i>Object Pose Tracker and Mesh Generator module</i> simultaneously track object pose and reconstruct object mesh. Keyframes with informative historical observations are stored in the memory pool to facilitate pose tracking in both stages. <b>Stage II:</b>  In testing, given an RGB-D image, the masks of the objects in the workspace are segmented out and the object pose is estimated by taking the <i>Keyframe Memory Pool</i> as a reference. Subsequently, the reconstructed meshes are transformed into camera coordinates with the estimated object pose. Taking this reconstructed scene point cloud, grasp generation is performed to generate the top k grasp poses for real-world experiments. The dotted lines represent the supplementation of historical information.
       </h2>
     </div>
   </div>
@@ -292,7 +309,7 @@
 
   <!-- Video 3 -->
   <div style="background-color: whitesmoke; padding: 15px;">
-    <h3 style="border-bottom: 1px solid; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">Masks</h3>
+    <h3 style="border-bottom: 1px solid; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">Segmentation Masks</h3>
     <div style="position: relative; width: 100%; padding-left: 0;">
       <video id="vid1" controls autoplay muted loop width="100%">
         <source src="./static/videos/mask_stage1.mp4">
@@ -313,6 +330,10 @@
   </div>
 </div>
 
+
+<br>
+<br>
+<br>
 
 <div class="container is-max-desktop has-text-centered">
 
@@ -347,7 +368,7 @@
 
   <!-- Video 3 -->
   <div style="background-color: whitesmoke; padding: 15px;">
-    <h3 style="border-bottom: 1px solid; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">Masks</h3>
+    <h3 style="border-bottom: 1px solid; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">Segmentation Masks</h3>
     <div style="position: relative; width: 100%; padding-left: 0;">
       <video id="vid1" controls autoplay muted loop width="100%">
         <source src="./static/videos/mask_stage2.mp4">
@@ -410,45 +431,28 @@
   </div>
 </div>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
 
+<!-- <div class="columns is-centered has-text-centered">
+  <div style="background-color: white; padding: 15px;">
+    <h3 style="border-bottom: 1px solid; margin: 0 0 8px 0; font-size: 18px; font-weight: 600;">Tok k Grasp Poses</h3>
+  <img src='./static/images/ICRA2024_results.drawio.png' width=80%>
+  </div>
+</div> -->
+
+
+<section class="pipeline">
+  <div class="container is-max-desktop">
+    <div class="hero-body is-centered has-text-centered">
+      <h2 class="title is-3">Qualitative Results</h2>
+      <!-- <img id="teaser" width=100%> -->
+      <img src="./static/images/ICRA2024_results.drawio.png"  width=60%>
+      <!-- </img> -->
+      <h2 class="subtitle has-text-centered">
+        Comparison of grasp generation accuracy between different qualities of input point cloud. Partial represents partial point cloud back-projected from a depth image. YOSO (Ours) represents scene point cloud reconstructed by our YOSO pipeline. Fully Visible represents scene-level fully visible point cloud, which is regarded as a perfect reconstructed scene.
+      </h2>
+    </div>
+  </div>
+</section>
 
 <!-- 
 <section class="section" id="BibTeX">
@@ -479,16 +483,8 @@
       <div class="column is-8">
         <div class="content">
           <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
+            This webpage template was inspired from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
           </p>
         </div>
       </div>
